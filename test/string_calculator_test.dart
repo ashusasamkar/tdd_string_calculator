@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tdd_string_calculator/core/errors/negative_number_exception.dart';
 import 'package:tdd_string_calculator/data/calculators/string_calculator.dart';
 
 void main() {
@@ -30,5 +31,12 @@ void main() {
 
   test('Custom delimiter is supported', () {
     expect(calculator.add('//;\n5;2'), 7);
+  });
+
+  test("Negative number will throw an exception", () {
+    expect(
+      () => calculator.add("5,-2,-3"),
+      throwsA(isA<NegativeNumberException>()),
+    );
   });
 }
