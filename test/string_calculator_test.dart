@@ -16,4 +16,7 @@ void main() {
     expect(calculator.add('5'), 5);
   });
 
+  test("Two numbers separated by comma return sum", () {
+    expect(calculator.add('5,7'), 12);
+  });
 }
