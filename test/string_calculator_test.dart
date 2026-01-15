@@ -11,4 +11,9 @@ void main() {
   test("Empty string should return 0", () {
     expect(calculator.add(''), 0);
   });
+
+  test("Single number returns that number", () {
+    expect(calculator.add('5'), 5);
+  });
+
 }
