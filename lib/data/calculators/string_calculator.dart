@@ -1,5 +1,8 @@
+import 'package:injectable/injectable.dart';
+
 import '../../core/errors/negative_number_exception.dart';
 
+@lazySingleton
 class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
