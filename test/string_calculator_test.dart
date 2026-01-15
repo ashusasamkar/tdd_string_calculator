@@ -19,4 +19,8 @@ void main() {
   test("Two numbers separated by comma return sum", () {
     expect(calculator.add('5,7'), 12);
   });
+
+  test("Sum off any Amount of Numbers separated by commas", () {
+    expect(calculator.add('1,2,3,4'), 10);
+  });
 }
