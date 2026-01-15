@@ -27,4 +27,8 @@ void main() {
   test('New lines between numbers are allowed', () {
     expect(calculator.add('1\n2,3'), 6);
   });
+
+  test('Custom delimiter is supported', () {
+    expect(calculator.add('//;\n5;2'), 7);
+  });
 }
