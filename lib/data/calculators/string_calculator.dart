@@ -1,3 +1,5 @@
+import '../../core/errors/negative_number_exception.dart';
+
 class StringCalculator {
   int add(String numbers) {
     if (numbers.isEmpty) return 0;
@@ -13,9 +15,13 @@ class StringCalculator {
 
     numbersPart = numbersPart.replaceAll('\n', delimiter);
 
-    return numbersPart
-        .split(delimiter)
-        .map(int.parse)
-        .fold(0, (sum, n) => sum + n);
+    final values = numbersPart.split(delimiter).map(int.parse).toList();
+
+    final negativeNumbers = values.where((n) => n < 0).toList();
+    if (negativeNumbers.isNotEmpty) {
+      throw NegativeNumberException(negativeNumbers);
+    }
+
+    return values.fold(0, (sum, n) => sum + n);
   }
 }
