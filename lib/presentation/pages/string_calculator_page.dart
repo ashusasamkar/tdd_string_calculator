@@ -26,7 +26,14 @@ class StringCalculatorPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            ElevatedButton(onPressed: () {}, child: const Text('Calculate')),
+            ElevatedButton(
+              onPressed: () {
+                context.read<StringCalculatorCubit>().calculate(
+                  _controller.text,
+                );
+              },
+              child: const Text('Calculate'),
+            ),
             const SizedBox(height: 24),
             BlocBuilder<StringCalculatorCubit, StringCalculatorState>(
               builder: (context, state) {
