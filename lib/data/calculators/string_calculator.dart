@@ -4,7 +4,7 @@ import '../../core/errors/negative_number_exception.dart';
 
 @lazySingleton
 class StringCalculator {
-  int add(String numbers) {
+  int calculate(String numbers) {
     if (numbers.isEmpty) return 0;
 
     String delimiter = ',';
@@ -16,15 +16,33 @@ class StringCalculator {
       numbersPart = lines[1];
     }
 
-    numbersPart = numbersPart.replaceAll('\n', delimiter);
+    numbersPart = numbersPart.replaceAll('\n', delimiter); // 5*2
 
-    final values = numbersPart.split(delimiter).map(int.parse).toList();
+    List<int> values = numberParsing(numbersPart, delimiter); //[5,2]
 
+    validateNumbers(values);
+
+    if (delimiter == "*") {
+      return multiplication(values);
+    }
+
+    return addition(values);
+  }
+
+  int addition(List<int> values) => values.fold(0, (sum, n) => sum + n);
+
+  int multiplication(List<int> values) =>
+      values.fold(1, (multiple, n) => multiple * n);
+
+  void validateNumbers(List<int> values) {
     final negativeNumbers = values.where((n) => n < 0).toList();
     if (negativeNumbers.isNotEmpty) {
       throw NegativeNumberException(negativeNumbers);
     }
+  }
 
-    return values.fold(0, (sum, n) => sum + n);
+  List<int> numberParsing(String numbersPart, String delimiter) {
+    final values = numbersPart.split(delimiter).map(int.parse).toList(); //[5,2]
+    return values;
   }
 }

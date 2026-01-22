@@ -9,6 +9,6 @@ class AddNumbersUseCase {
   AddNumbersUseCase({required this.calculator});
 
   int call(String input) {
-    return calculator.add(input);
+    return calculator.calculate(input);
   }
 }
